@@ -20,7 +20,7 @@ class AllParkingSpots(models.Model):
 class AvailableParkingSpots(models.Model):
     parking_id = models.ForeignKey(AllParkingSpots)
     place_id = models.ForeignKey(Places)
-    radius = models.IntegerField(max_length=10, null=False)
+    distance = models.IntegerField(max_length=10, null=False)
 
     def __str__(self):
         return "{}, {}, {}".format(self.parking_id, self.place_id, self.radius)
