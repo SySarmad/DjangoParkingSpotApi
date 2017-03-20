@@ -25,7 +25,7 @@ class AvailableParkingSpots(models.Model):
     def __str__(self):
         return "{}, {}, {}".format(self.parking_id, self.place_id, self.radius)
 
-class reserved_parking_spots(models.Model):
+class ReservedParkingSpots(models.Model):
     parking_id = models.OneToOneField(AvailableParkingSpots)
     time_range = models.DateTimeField(auto_now=False, auto_now_add=False)
 
