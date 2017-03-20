@@ -6,7 +6,7 @@ class Places(models.Model):
     lng = models.DecimalField(max_digits=11, decimal_places=8)
 
     def __str__(self):
-        return "{}, {}".format(self.lat, self.lng)
+        return "{},{}".format(self.lat, self.lng)
 
 class AllParkingSpots(models.Model):
     p_id = models.SlugField(max_length=6, primary_key=True, null=False)
@@ -14,7 +14,7 @@ class AllParkingSpots(models.Model):
     lng = models.DecimalField(max_digits=11, decimal_places=8)
 
     def __str__(self):
-        return "{}, {}, {}".format(self.p_id, self.lat, self.lng)
+        return "{},{},{}".format(self.p_id, self.lat, self.lng)
 
 
 class AvailableParkingSpots(models.Model):
@@ -23,11 +23,11 @@ class AvailableParkingSpots(models.Model):
     distance = models.IntegerField(max_length=10, null=False)
 
     def __str__(self):
-        return "{}, {}, {}".format(self.parking_id, self.place_id, self.radius)
+        return "{},{},{}".format(self.parking_id, self.place_id, self.radius)
 
 class ReservedParkingSpots(models.Model):
-    parking_id = models.OneToOneField(AvailableParkingSpots)
+    parking_id = models.OneToOneField(AllParkingSpots)
     time_range = models.DateTimeField(auto_now=False, auto_now_add=False)
 
     def __str__(self):
-        return "{}, {}".format(self.parking_id, self.time_range)
+        return "{},{}".format(self.parking_id, self.time_range)
