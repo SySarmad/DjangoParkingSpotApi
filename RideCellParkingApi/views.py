@@ -59,6 +59,7 @@ def get_all_available_parking_spots(lat, lng, radius):
     return available_parking_spots
 
 def reserve_spot(parking_spot, timerange):
+    """Reserves spot using an parkingspot ID and a datetime range"""
     reserved_spots = ReservedParkingSpots.objects.all()
 
     for i in reserved_spots:
@@ -69,5 +70,5 @@ def reserve_spot(parking_spot, timerange):
         else:
             return "Spot is already reserved for that time"
     ReservedParkingSpots(parking_id=parking_spot, timerange=timerange).save()
-
+    AvailableParkingSpots.objects.get(parking_spot).delete()
     return "Spot is reserved!"
